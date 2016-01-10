@@ -1,0 +1,7 @@
+snipsl-writer-tool-tmp
+dist
+node_modules
+tmp
+npm-debug.log
+.DS_Store
+*/.DS_Store

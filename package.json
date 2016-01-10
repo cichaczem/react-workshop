@@ -1,0 +1,36 @@
+{
+  "version": "0.0.1",
+  "private": true,
+  "name": "snipsl-writer-tool",
+  "dependencies": {
+    "babel": "6.3.26",
+    "babel-core": "^6.4.0",
+    "ejs": "^2.3.4",
+    "express": "4.13.3",
+    "history": "^2.0.0-rc2",
+    "react": "0.14.6",
+    "react-dom": "0.14.6",
+    "react-router": "^1.0.0-rc2"
+  },
+  "scripts": {
+    "dev": "node server.js",
+    "build": "rimraf dist && NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack/production.config.js --progress --profile --colors",
+    "deploy": "node_modules/shipit-cli/bin/shipit demo deploy"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^1.6.1",
+    "node-jsx": "0.13.3",
+    "node-sass": "^3.3.3",
+    "node-sass-middleware": "^0.9.6",
+    "rimraf": "^2.4.3",
+    "sass-loader": "^3.0.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-dev-server": "^1.12.1",
+    "webpack-hot-middleware": "^2.4.1"
+  }
+}

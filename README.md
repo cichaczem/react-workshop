@@ -1,4 +1,4 @@
-#Snipsl Writer tool
+#ReactJS workshop
 
 ## Install
 

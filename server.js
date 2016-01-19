@@ -8,7 +8,8 @@ var port = 1337;
 var ip = '127.0.0.1';
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
-    historyApiFallback: true
+    historyApiFallback: true,
+    stats: { chunks: false }
 }).listen(port, ip, function (err) {
     if(err) {
       return console.log(err);

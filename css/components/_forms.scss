@@ -1,0 +1,88 @@
+%basic-input {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  width: 100%;
+  border: none;
+  border: 1px solid #777;
+  margin: 0 0 2rem;
+
+  &:focus {
+    border: 1px solid blue;
+    outline: 0;
+  }
+}
+
+
+input[type="text"] {
+  @extend %basic-input;
+}
+
+form {
+  padding: 2rem 0;
+}
+
+fieldset {
+  border: none;
+  padding: 0 0 0;
+  border: 1px solid $grey;
+}
+
+label {
+  display: block;
+  margin: 0 0 0.5rem;
+}
+
+legend {
+  background-color: $grey-light;
+  border-bottom: 1px solid $grey;
+  display: block;
+  padding: 1rem 2rem;
+  width: 100%;
+  float: left;
+}
+
+.fields {
+  @include transition(max-height, 0.8s, ease-in-out);
+  max-height: 0;
+  overflow: hidden;
+  height: 1px;
+
+  &.active {
+    padding: 2rem 2rem 1rem;
+    max-height: 9999px;
+    height: auto;
+  }
+}
+
+.select-wrapper {
+  padding: 0;
+  margin: 0 0 2rem;
+  border: 1px solid #777;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  background-image: url("../img/chevron-01.png");
+  background-repeat: no-repeat;
+  background-position: center right 5px;
+  background-size: auto 80%;
+}
+
+.select-wrapper select {
+  padding: 0.6rem 0.8rem;
+  width: 130%;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.select-wrapper select:focus {
+  outline: none;
+}
+
+.action-holder {
+  padding: 2rem;
+}

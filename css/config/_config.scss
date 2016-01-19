@@ -1,0 +1,13 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: "Dosis", sans-serif;
+  font-size: 18px;
+  overflow-x: hidden;
+  // background-image: url("img/ricepaper2.png");
+}

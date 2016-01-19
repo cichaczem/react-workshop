@@ -1,0 +1,10 @@
+.student-item {
+  list-style: none;
+  padding: 0 1rem 1.5rem;
+  margin: 0 0 1rem;
+  border-bottom: 1px solid $blue;
+
+  &:last-of-type {
+    border: none;
+  }
+}

@@ -1,0 +1,19 @@
+header {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: $grey-light;
+  border-bottom: 1px solid $grey;
+
+  &.welcome-header {
+    padding: 6rem 1rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+
+.logo {
+  max-width: 250px;
+}

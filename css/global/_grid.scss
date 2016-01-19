@@ -1,0 +1,13 @@
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.main {
+  max-width: 32rem;
+  display: block;
+  margin: 0 auto;
+}

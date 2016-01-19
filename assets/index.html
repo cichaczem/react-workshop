@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lunars School of Witchcraft and Wizardry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Dosis:400,300,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+
+<!-- home page -->
+
+    <header class="welcome-header">
+      <a href="/">
+        <img src="../img/lunarts-logo-nobg.png" class="logo"/>
+      </a>
+      <h1 class="school-name"> School of Witchcraft & Wizardry </h1>
+    </header>
+    <section class="main" aria-role="main">
+      <div class="buttons-group">
+        <a href="#" class="button primary">Enroll</a>
+        <a href="#" class="button secondary">See Students</a>
+      </div>
+    </section>
+
+<!-- enroll form -->
+
+    <header class="collapsed-header">
+      <a href="/">
+        <img src="../img/lunarts-logo-collapsed.png" class="logo"/>
+      </a>
+    </header>
+    <section class="main" aria-role="main">
+      <form>
+        <fieldset>
+          <legend>Basic Info</legend>
+          <div class="fields active">
+            <label for="name">First Name</label>
+            <input type="text" name="name" placeholder="Arien" />
+            <label for="surname">Surname</label>
+            <input type="text" name="surname" placeholder="Doriath" />
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Magical Preferences</legend>
+          <div class="fields active">
+            <label for="house">House</label>
+            <div class="select-wrapper">
+              <select name="house">
+                <option disabled selected>-- Our choices show what we truly are --</option>
+                <option value="gryffindor">Gryffindor</option>
+                <option value="slytherin">Slytherin</option>
+                <option value="ravenclaw">Raveclaw</option>
+                <option value="hufflepuff">Hufflepuff</option>
+              </select>
+            </div>
+            <label for="pet">Pet Companion</label>
+            <div class="select-wrapper">
+              <select name="pet">
+                <option disabled selected>-- Choose Pet Wisely --</option>
+                <option value="owl">Owl</option>
+                <option value="cat">Cat</option>
+                <option value="unicorn">Unicorn</option>
+                <option value="toad">Toad</option>
+                <option value="snake">Snake</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+        <div class="action-holder">
+          <input type="submit" value="Enroll">
+        </div>
+      </form>
+    </section>
+
+<!-- Students List -->
+
+    <header class="collapsed-header">
+      <a href="/">
+        <img src="../img/lunarts-logo-collapsed.png" class="logo"/>
+      </a>
+    </header>
+    <section class="main" aria-role="main">
+      <h1>List of enrolled students </h1>
+      <ul class="students">
+        <li class="student-item">
+          <h2> Harry Potter </h2>
+          <p>
+            <strong>House:</strong>
+            Gryffindor
+          </p>
+          <p>
+            <strong> Pet Companion: </strong>
+            Owl
+          </p>
+        </li>
+        <li class="student-item">
+          <h2> Draco Malfoy </h2>
+          <p>
+            <strong>House:</strong>
+            Slythering
+          </p>
+          <p>
+            <strong> Pet Companion: </strong>
+            Unicorn
+          </p>
+        </li>
+        <li class="student-item">
+          <h2> Hermiona Granger </h2>
+          <p>
+            <strong>House:</strong>
+            Gryffindor
+          </p>
+          <p>
+            <strong> Pet Companion: </strong>
+            Cat
+          </p>
+        </li>
+      </ul>
+    </section>
+  
+  </body>
+</html>

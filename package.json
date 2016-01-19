@@ -7,6 +7,7 @@
     "babel-core": "^6.4.0",
     "ejs": "^2.3.4",
     "express": "4.13.3",
+    "file-loader": "^0.8.5",
     "history": "^2.0.0-rc2",
     "react": "0.14.6",
     "react-dom": "0.14.6",

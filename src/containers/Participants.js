@@ -1,47 +1,30 @@
 import React from 'react';
 import Menu from '../components/shared/Menu';
 import MenuButtonNames from '../lib/MenuButtonNames';
+import Student from '../components/participants/Student';
+import API from '../lib/API';
 
 class Participants extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: new API().getStudents()
+    }
+  }
+
+  renderStudents() {
+    return this.state.students.map(
+      (student) => <Student data={student} key={student.id} />
+    );
+  }
+
   render() {
     return (
       <div>
         <Menu activeButton={MenuButtonNames.PARTICIPANTS} />
         <h1>List of enrolled students </h1>
         <ul className="students">
-          <li className="student-item">
-            <h2> Harry Potter </h2>
-            <p>
-              <strong>House:</strong>
-              Gryffindor
-            </p>
-            <p>
-              <strong> Pet Companion: </strong>
-              Owl
-            </p>
-          </li>
-          <li className="student-item">
-            <h2> Draco Malfoy </h2>
-            <p>
-              <strong>House:</strong>
-              Slythering
-            </p>
-            <p>
-              <strong> Pet Companion: </strong>
-              Unicorn
-            </p>
-          </li>
-          <li className="student-item">
-            <h2> Hermiona Granger </h2>
-            <p>
-              <strong>House:</strong>
-              Gryffindor
-            </p>
-            <p>
-              <strong> Pet Companion: </strong>
-              Cat
-            </p>
-          </li>
+          {this.renderStudents()}
         </ul>
       </div>
     )

@@ -12,6 +12,7 @@ export default (
       <IndexRoute component={Main} />
       <Route path="participants" component={Participants} />
       <Route path="enroll" component={Enroll} />
+      <Route path="*" component={Main} />
     </Route>
   </Router>
 )

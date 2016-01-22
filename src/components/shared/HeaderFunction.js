@@ -3,9 +3,9 @@ import React from 'react';
 const HeaderFunction = (props) =>
   (
     <header>
-      <a href="/">
+      <Link to="/">
         <img src="../img/lunarts-logo-collapsed.png" className="logo"/>
-      </a>
+      </Link>
       <p>NEW HEADER</p>
     </header>
   )

@@ -1,4 +1,5 @@
 import React from 'react';
+import Error from '../shared/Error';
 
 class Preferences extends React.Component {
   constructor(props) {
@@ -26,12 +27,19 @@ class Preferences extends React.Component {
     return open ? `${common} ${visible}` : common;
   }
 
+  renderErrorForField(field) {
+    const {errors} = this.props;
+    if(errors && Object.keys(errors).includes(field))
+      return <Error message={errors[field][0]} />
+  }
+
   render() {
     return (
       <fieldset>
         <legend onClick={this.toggleForm.bind(this)}>Magical Preferences</legend>
         <div className={this.formVisibilityCss()}>
           <label htmlFor="house">House</label>
+          {this.renderErrorForField("house")}
           <div className="select-wrapper">
             <select name="house" defaultValue="" ref="house">
               <option value="" disabled>-- Our choices show what we truly are --</option>
@@ -42,6 +50,7 @@ class Preferences extends React.Component {
             </select>
           </div>
           <label htmlFor="pet">Pet Companion</label>
+          {this.renderErrorForField("pet")}
           <div className="select-wrapper">
             <select name="pet" defaultValue="" ref="pet">
               <option value="" disabled>-- Choose Pet Wisely --</option>

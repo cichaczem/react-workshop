@@ -13,7 +13,7 @@ class StudentValidator {
       (errors) => {
         const key = Object.keys(errors)[0];
         if(errors[key].length > 0 && key !== "id")
-          studentErrors[key] = errors;
+          studentErrors[key] = errors[key];
         return true;
       }
     );

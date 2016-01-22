@@ -7,13 +7,26 @@ import API from '../lib/API';
 import history from '../history.js'
 
 class Enroll extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      errors: null
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const student = Object.assign({}, this.refs.basic.value(), this.refs.preferences.value())
     const result = new API().addStudent(student.name, student.surname, student.house, student.pet)
-    if(!result["errors"]) {
+    if(result["errors"]) {
+      this.setErrors(result.errors);
+    } else {
       this.redirectToList();
     }
+  }
+
+  setErrors(errors) {
+    this.setState({errors: errors})
   }
 
   redirectToList() {
@@ -21,12 +34,14 @@ class Enroll extends React.Component {
   }
 
   render() {
+    const { errors } = this.state;
+
     return (
       <div>
         <Menu activeButton={MenuButtonNames.ENROLL} />
         <form>
-          <BasicInfo ref="basic" />
-          <Preferences ref="preferences" />
+          <BasicInfo ref="basic" errors={errors} />
+          <Preferences ref="preferences" errors={errors} />
           <div className="action-holder">
             <input type="submit" value="Enroll" onClick={this.handleSubmit.bind(this)} />
           </div>

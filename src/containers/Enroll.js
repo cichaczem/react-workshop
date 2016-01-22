@@ -5,7 +5,7 @@ class Enroll extends React.Component {
   render() {
     return (
       <div>
-        <Menu />
+        <Menu activeButton="Enroll" />
         <form>
           <fieldset>
             <legend>Basic Info</legend>

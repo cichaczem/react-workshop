@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from "./components/Main"
+import Main from "./containers/Main";
+import Participants from "./containers/Participants";
+import Enroll from "./containers/Enroll";
 
 var app = document.getElementById('app');
 

@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from './containers/Layout';
-import Main from "./containers/Main";
-import Participants from "./containers/Participants";
-import Enroll from "./containers/Enroll";
+import routes from './routes';
 
 var app = document.getElementById('app');
 
-ReactDOM.render(<Layout><Main /></Layout>, app);
+ReactDOM.render(routes, app);

@@ -1,5 +1,6 @@
 import React from 'react';
 import MenuButton from './MenuButton';
+import MenuButtonNames from '../../lib/MenuButtonNames';
 
 class Menu extends React.Component {
   checkIfButtonIsActive(buttonName) {
@@ -10,8 +11,12 @@ class Menu extends React.Component {
   render() {
     return (
       <div className="buttons-group">
-        <MenuButton url="/enroll" name="Enroll" isActive={this.checkIfButtonIsActive("Enroll")} />
-        <MenuButton url="/participants" name="See Students" isActive={this.checkIfButtonIsActive("Participants")} />
+        <MenuButton url="/enroll"
+                    name="Enroll"
+                    isActive={this.checkIfButtonIsActive(MenuButtonNames.ENROLL)} />
+        <MenuButton url="/participants"
+                    name="See Students"
+                    isActive={this.checkIfButtonIsActive(MenuButtonNames.PARTICIPANTS)} />
       </div>
     )
   }

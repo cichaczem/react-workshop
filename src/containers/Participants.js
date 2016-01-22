@@ -1,11 +1,12 @@
 import React from 'react';
 import Menu from '../components/shared/Menu';
+import MenuButtonNames from '../lib/MenuButtonNames';
 
 class Participants extends React.Component {
   render() {
     return (
       <div>
-        <Menu activeButton="Participants" />
+        <Menu activeButton={MenuButtonNames.PARTICIPANTS} />
         <h1>List of enrolled students </h1>
         <ul className="students">
           <li className="student-item">

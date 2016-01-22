@@ -1,11 +1,12 @@
 import React from 'react';
 import Menu from '../components/shared/Menu';
+import MenuButtonNames from '../lib/MenuButtonNames';
 
 class Enroll extends React.Component {
   render() {
     return (
       <div>
-        <Menu activeButton="Enroll" />
+        <Menu activeButton={MenuButtonNames.ENROLL} />
         <form>
           <fieldset>
             <legend>Basic Info</legend>

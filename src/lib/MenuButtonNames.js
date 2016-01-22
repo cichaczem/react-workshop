@@ -1,0 +1,4 @@
+export default {
+  ENROLL: 'ENROLL',
+  PARTICIPANTS: 'PARTICIPANTS'
+}

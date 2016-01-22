@@ -8,6 +8,13 @@ class Preferences extends React.Component {
     }
   }
 
+  value() {
+    return {
+      house: this.refs.house.value,
+      pet: this.refs.pet.value
+    }
+  }
+
   toggleForm() {
     this.setState({open: !this.state.open})
   }
@@ -26,7 +33,7 @@ class Preferences extends React.Component {
         <div className={this.formVisibilityCss()}>
           <label htmlFor="house">House</label>
           <div className="select-wrapper">
-            <select name="house" defaultValue="">
+            <select name="house" defaultValue="" ref="house">
               <option value="" disabled>-- Our choices show what we truly are --</option>
               <option value="gryffindor">Gryffindor</option>
               <option value="slytherin">Slytherin</option>
@@ -36,7 +43,7 @@ class Preferences extends React.Component {
           </div>
           <label htmlFor="pet">Pet Companion</label>
           <div className="select-wrapper">
-            <select name="pet" defaultValue="">
+            <select name="pet" defaultValue="" ref="pet">
               <option value="" disabled>-- Choose Pet Wisely --</option>
               <option value="owl">Owl</option>
               <option value="cat">Cat</option>

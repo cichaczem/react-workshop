@@ -8,8 +8,19 @@ class Participants extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: new API().getStudents()
+      students: []
     }
+  }
+
+  componentWillMount() {
+    const timeout = setTimeout(
+      () => {
+        this.setState({
+          students: new API().getStudents()
+        });
+        clearTimeout(timeout);
+      }, 1000
+    );
   }
 
   renderStudents() {

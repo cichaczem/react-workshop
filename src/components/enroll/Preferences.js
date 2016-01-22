@@ -1,11 +1,29 @@
 import React from 'react';
 
 class Preferences extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    }
+  }
+
+  toggleForm() {
+    this.setState({open: !this.state.open})
+  }
+
+  formVisibilityCss() {
+    const { open } = this.state;
+    const common = "fields";
+    const visible = "active";
+    return open ? `${common} ${visible}` : common;
+  }
+
   render() {
     return (
       <fieldset>
-        <legend>Magical Preferences</legend>
-        <div className="fields active">
+        <legend onClick={this.toggleForm.bind(this)}>Magical Preferences</legend>
+        <div className={this.formVisibilityCss()}>
           <label htmlFor="house">House</label>
           <div className="select-wrapper">
             <select name="house" defaultValue="">
@@ -27,9 +45,6 @@ class Preferences extends React.Component {
               <option value="snake">Snake</option>
             </select>
           </div>
-        </div>
-        <div className="action-holder">
-          <input type="submit" value="Enroll" />
         </div>
       </fieldset>
     )

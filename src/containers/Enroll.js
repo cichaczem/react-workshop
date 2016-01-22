@@ -10,8 +10,8 @@ class Enroll extends React.Component {
       <div>
         <Menu activeButton={MenuButtonNames.ENROLL} />
         <form>
-          <BasicInfo />
-          <Preferences />
+          <BasicInfo ref="basic" />
+          <Preferences ref="preferences" />
           <div className="action-holder">
             <input type="submit" value="Enroll" />
           </div>

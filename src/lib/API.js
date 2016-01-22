@@ -31,14 +31,25 @@ class API {
 
   addStudent(name, surname, house, pet) {
     const student = this.buildStudent(name, surname, house, pet);
-    students = [...students, student];
-    return true;
+    const validator = new Validator(student);
+    if(validator.isValid()) {
+      students = [...students, student];
+      return student;
+    } else {
+      return {errors: validator.errors()}
+    }
+
   }
 
   editStudent(id, name, surname, house, pet) {
     const student = this.buildStudent(name, surname, house, pet, id);
-    students = [...students.filter(student => student.id !== id), student];
-    return true;
+    const validator = new Validator(student);
+    if(validator.isValid()) {
+      students = [...students.filter(student => student.id !== id), student];
+      return student;
+    } else {
+      return {errors: validator.errors()}
+    }
   }
 
   buildStudent(name, surname, house, pet, id = this.nextId()) {

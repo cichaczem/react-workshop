@@ -3,11 +3,21 @@ import Menu from '../components/shared/Menu';
 import MenuButtonNames from '../lib/MenuButtonNames';
 import BasicInfo from '../components/enroll/BasicInfo';
 import Preferences from '../components/enroll/Preferences';
+import API from '../lib/API';
+import history from '../history.js'
 
 class Enroll extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const student = Object.assign({}, this.refs.basic.value(), this.refs.preferences.value())
+    const result = new API().addStudent(student.name, student.surname, student.house, student.pet)
+    if(!result["errors"]) {
+      this.redirectToList();
+    }
+  }
+
+  redirectToList() {
+    return history.pushState(null, "/participants");
   }
 
   render() {
@@ -25,5 +35,7 @@ class Enroll extends React.Component {
     )
   }
 }
+
+
 
 export default Enroll;

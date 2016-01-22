@@ -20,4 +20,10 @@ class MenuButton extends React.Component {
   }
 }
 
+MenuButton.propTypes = {
+  url: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired,
+  isActive: React.PropTypes.bool
+}
+
 export default MenuButton;

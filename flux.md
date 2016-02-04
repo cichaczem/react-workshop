@@ -43,3 +43,7 @@ where `value` should be taken from the store (you need to add proper method)
  * move dispatching action to separate method in `EnrollActionCreator`
  * create new folder - `constants` - and new file there - `ActionTypes.js`
  * move `TOGGLE_BASIC_INFO` string there
+
+#### Step 3
+
+1. Do the same for `toggleForm` in `src/enroll/Preferences.js`

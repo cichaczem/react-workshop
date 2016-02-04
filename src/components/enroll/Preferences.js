@@ -1,5 +1,7 @@
 import React from 'react';
 import Error from '../shared/Error';
+import EnrollActionCreator from '../../action_creators/EnrollActionCreator';
+import EnrollStore from '../../stores/EnrollStore';
 
 class Preferences extends React.Component {
   constructor(props) {
@@ -7,6 +9,19 @@ class Preferences extends React.Component {
     this.state = {
       open: false
     }
+    this._onChange = this.onChange.bind(this);
+  }
+
+  componentWillMount() {
+    EnrollStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    EnrollStore.removeChangeListener(this._onChange);
+  }
+
+  onChange() {
+    this.setState({ open: EnrollStore.isPreferencesOpen() });
   }
 
   value() {
@@ -17,7 +32,7 @@ class Preferences extends React.Component {
   }
 
   toggleForm() {
-    this.setState({open: !this.state.open})
+    EnrollActionCreator.togglePreferences();
   }
 
   formVisibilityCss() {

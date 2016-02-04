@@ -36,3 +36,10 @@ setState({ open: value })
 
 where `value` should be taken from the store (you need to add proper method)
 
+#### Step 2
+
+1. Refactor code:
+ * create new folder - `action_creators` - and new class there - `EnrollActionCreator.js`
+ * move dispatching action to separate method in `EnrollActionCreator`
+ * create new folder - `constants` - and new file there - `ActionTypes.js`
+ * move `TOGGLE_BASIC_INFO` string there

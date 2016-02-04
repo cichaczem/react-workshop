@@ -38,12 +38,17 @@ where `value` should be taken from the store (you need to add proper method)
 
 #### Step 2
 
-1. Refactor code:
- * create new folder - `action_creators` - and new class there - `EnrollActionCreator.js`
- * move dispatching action to separate method in `EnrollActionCreator`
- * create new folder - `constants` - and new file there - `ActionTypes.js`
- * move `TOGGLE_BASIC_INFO` string there
+Refactor code:
+
+1. create new folder - `action_creators` - and new class there - `EnrollActionCreator.js`
+2. move dispatching action to separate method in `EnrollActionCreator`
+3. create new folder - `constants` - and new file there - `ActionTypes.js`
+4. move `TOGGLE_BASIC_INFO` string there
 
 #### Step 3
 
-1. Do the same for `toggleForm` in `src/enroll/Preferences.js`
+Do the same for `toggleForm` in `src/enroll/Preferences.js`
+
+#### Step 4
+
+Fluxify `src/containers/Participants.js` (there is `setState` in `componentWillMount`)

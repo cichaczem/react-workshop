@@ -1,23 +1,9 @@
+import BaseStore from './BaseStore';
 import AppDispatcher from '../AppDispatcher';
 import ActionTypes from '../constants/ActionTypes';
-import { EventEmitter } from 'events';
 import API from '../lib/API';
 
-const CHANGE_EVENT = 'change';
-
-class ParticipantsStore extends EventEmitter {
-  addChangeListener(listener, context) {
-    this.on(CHANGE_EVENT, listener, context);
-  }
-
-  removeChangeListener(listener, context) {
-    this.removeListener(CHANGE_EVENT, listener, context);
-  }
-
-  emitChange() {
-    this.emit(CHANGE_EVENT);
-  }
-
+class ParticipantsStore extends BaseStore {
   constructor() {
     super();
 

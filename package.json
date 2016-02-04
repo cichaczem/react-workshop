@@ -17,7 +17,7 @@
     "url-loader": "^0.5.7"
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node --require babel-core/register -- server.js",
     "build": "rimraf dist && NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack/production.config.js --progress --profile --colors",
     "deploy": "node_modules/shipit-cli/bin/shipit demo deploy"
   },

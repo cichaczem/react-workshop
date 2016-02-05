@@ -52,3 +52,25 @@ Do the same for `toggleForm` in `src/enroll/Preferences.js`
 #### Step 4
 
 Fluxify `src/containers/Participants.js` (there is `setState` in `componentWillMount`)
+
+#### Step 5
+
+Open page source and see that we don’t have any content there : (
+Notice that `<div id=“app”></div>` where our app should be rendered is empty.
+It works perfectly client side, but it’s not server side, so our SEO sucks : (
+
+Let’s take first step to make it make it better.
+
+1. We need to enable ES6 in `server.js` file, so let’s add `--require babel-core/register` to the `dev` script in `package.json`
+
+2. Open `server.js` and change it to use ES6 (imports, vars to consts,
+   etc).
+  References: [Babel](https://babeljs.io/docs/learn-es2015/) or [E6-features](http://es6-features.org/#ValueExportImport).
+
+#### Step 6
+
+1. Take a look on [server side rendering doc](https://github.com/rackt/react-router/blob/v1.0.3/docs/guides/advanced/ServerRendering.md) of `react-router` library and try to use it in `server.js`
+
+<b>IMPORTANT TIPS</b> not mentioned there:
+  * you need to change `routes.js` to include only `Route` elements, you need to move `Router` element to the upper level (`application.js`).
+  * you need to move creating history to the `application.js`

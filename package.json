@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
   "private": true,
-  "name": "snipsl-writer-tool",
+  "name": "react-workshop",
   "dependencies": {
     "babel": "6.3.26",
     "babel-core": "^6.4.0",

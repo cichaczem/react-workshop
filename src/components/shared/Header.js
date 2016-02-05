@@ -6,7 +6,7 @@ class Header extends React.Component {
     return (
       <header>
         <Link to="/">
-          <img src="../img/lunarts-logo-collapsed.png" className="logo"/>
+          <img src="/img/lunarts-logo-collapsed.png" className="logo"/>
         </Link>
       </header>
     )

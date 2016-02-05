@@ -6,7 +6,7 @@ class Main extends React.Component {
     return (
       <div>
         <h1> School of Witchcraft & Wizardry </h1>
-        <img src="../img/wizard.png" className="wizard"/>
+        <img src="/img/wizard.png" className="wizard"/>
         <Menu />
       </div>
     )

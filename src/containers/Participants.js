@@ -13,14 +13,9 @@ class Participants extends React.Component {
   }
 
   componentWillMount() {
-    const timeout = setTimeout(
-      () => {
-        this.setState({
-          students: new API().getStudents()
-        });
-        clearTimeout(timeout);
-      }, 1000
-    );
+    this.setState({
+      students: new API().getStudents()
+    });
   }
 
   renderStudents() {

@@ -4,7 +4,6 @@ import MenuButtonNames from '../lib/MenuButtonNames';
 import BasicInfo from '../components/enroll/BasicInfo';
 import Preferences from '../components/enroll/Preferences';
 import API from '../lib/API';
-import history from '../history.js'
 
 class Enroll extends React.Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class Enroll extends React.Component {
     e.preventDefault();
     const student = Object.assign({}, this.refs.basic.value(), this.refs.preferences.value())
     const result = new API().addStudent(student.name, student.surname, student.house, student.pet)
-    if(result["errors"]) {
+    if (result.errors) {
       this.setErrors(result.errors);
     } else {
       this.redirectToList();
@@ -30,7 +29,7 @@ class Enroll extends React.Component {
   }
 
   redirectToList() {
-    return history.pushState(null, "/participants");
+    return this.props.history.pushState(null, "/participants");
   }
 
   render() {

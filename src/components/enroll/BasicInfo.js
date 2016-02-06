@@ -1,12 +1,30 @@
 import React from 'react';
 import Error from '../shared/Error';
+import { toggleBasicInfo } from '../../actionsCreators/enrollActionCreators'
+import enrollStore from '../../stores/enrollStore';
 
 class BasicInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true
+      open: enrollStore.getBasicInfoOpen()
     }
+  }
+
+  componentWillMount() {
+    enrollStore.subscribe(
+      this.changeVisibility.bind(this)
+    )
+  }
+
+  componentWillUnmount() {
+    enrollStore.unsubscribe(
+      this.changeVisibility.bind(this)
+    )
+  }
+
+  changeVisibility() {
+    this.setState({open: enrollStore.getBasicInfoOpen()})
   }
 
   value() {
@@ -17,7 +35,7 @@ class BasicInfo extends React.Component {
   }
 
   toggleForm() {
-    this.setState({open: !this.state.open})
+    toggleBasicInfo();
   }
 
   formVisibilityCss() {

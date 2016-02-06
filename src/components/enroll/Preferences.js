@@ -1,12 +1,35 @@
 import React from 'react';
 import Error from '../shared/Error';
+import { togglePreferences } from '../../actionsCreators/enrollActionCreators'
+import enrollStore from '../../stores/enrollStore';
+
 
 class Preferences extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: enrollStore.getPreferencesOpen()
     }
+  }
+
+  componentWillMount() {
+    enrollStore.subscribe(
+      this.changeVisibility.bind(this)
+    )
+  }
+
+  componentWillUnmount() {
+    enrollStore.unsubscribe(
+      this.changeVisibility.bind(this)
+    )
+  }
+
+  changeVisibility() {
+    this.setState({open: enrollStore.getPreferencesOpen()})
+  }
+
+  toggleForm() {
+    togglePreferences();
   }
 
   value() {

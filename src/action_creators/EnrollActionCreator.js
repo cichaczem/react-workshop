@@ -3,9 +3,9 @@ import AppDispatcher from '../AppDispatcher';
 
 const EnrollActionCreator = {
   toggleBasicInfo() {
-    AppDispatcher.dispatch({
-      actionType: ActionTypes.TOGGLE_BASIC_INFO
-    })
+    return {
+      type: ActionTypes.TOGGLE_BASIC_INFO
+    }
   },
 
   togglePreferences() {

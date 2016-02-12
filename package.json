@@ -13,7 +13,10 @@
     "history": "1.17.0",
     "react": "0.14.6",
     "react-dom": "0.14.6",
+    "react-redux": "^4.4.0",
     "react-router": "^1.0.0-rc2",
+    "redux": "^3.3.1",
+    "redux-router": "^0.1.0",
     "url-loader": "^0.5.7"
   },
   "scripts": {

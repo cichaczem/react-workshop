@@ -4,13 +4,6 @@ import EnrollActionCreator from '../../action_creators/EnrollActionCreator';
 import { connect } from 'react-redux';
 
 class BasicInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: true
-    }
-  }
-
   value() {
     return {
       name: this.refs.name.value,
@@ -24,7 +17,7 @@ class BasicInfo extends React.Component {
   }
 
   formVisibilityCss() {
-    const { open } = this.state;
+    const { open } = this.props;
     const common = "fields";
     const visible = "active";
     return open ? `${common} ${visible}` : common;
@@ -54,6 +47,9 @@ class BasicInfo extends React.Component {
 }
 
 function select(state) {
+  return {
+    open: state.enroll.isBasicInfoOpen
+  }
 }
 
 export default connect(select)(BasicInfo);

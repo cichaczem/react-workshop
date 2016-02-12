@@ -1,6 +1,7 @@
 import React from 'react';
 import Error from '../shared/Error';
 import EnrollActionCreator from '../../action_creators/EnrollActionCreator';
+import { connect } from 'react-redux';
 
 class BasicInfo extends React.Component {
   constructor(props) {
@@ -52,4 +53,7 @@ class BasicInfo extends React.Component {
   }
 }
 
-export default BasicInfo;
+function select(state) {
+}
+
+export default connect(select)(BasicInfo);

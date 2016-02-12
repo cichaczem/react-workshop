@@ -7,11 +7,6 @@ import http from 'http';
 import config from './webpack/development.config.js';
 import defaultConfig from './webpack/default.config.js';
 
-import { match, RoutingContext } from 'react-router';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import Routes from './src/routes';
-
 const port = 1337;
 const ip = '127.0.0.1';
 
@@ -30,9 +25,7 @@ app.use(WebpackHotMiddleware(compiler, {
   path: '/__webpack_hmr'
 }));
 
-const indexHtml = (renderProps) => {
-  const app = ReactDOMServer.renderToString(
-    <RoutingContext {...renderProps} />);
+const indexHtml = () => {
   return `
   <!DOCTYPE html>
   <html>
@@ -45,7 +38,7 @@ const indexHtml = (renderProps) => {
       <link href="/bundle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-      <div id="app">${app}</div>
+      <div id="app"></div>
       <script src="/bundle.js" type="text/javascript"></script>
     </body>
   </html>
@@ -53,18 +46,8 @@ const indexHtml = (renderProps) => {
 }
 
 app.use((req, res) => {
-  match({ routes: Routes, location: req.url }, (error, redirectLocation, renderProps) => {
-    if (error) {
-      res.status(500).send(error.message);
-    } else if (redirectLocation) {
-      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-    } else if (renderProps) {
-      const html = indexHtml(renderProps);
-      res.send(html);
-    } else {
-      res.status(404).send('Not found');
-    }
-  })
+  const html = indexHtml();
+  res.send(html);
 });
 
 http.createServer(app).listen(port, ip, (err) => {

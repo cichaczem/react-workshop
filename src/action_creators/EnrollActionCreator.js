@@ -1,5 +1,4 @@
 import ActionTypes from '../constants/ActionTypes';
-import AppDispatcher from '../AppDispatcher';
 
 const EnrollActionCreator = {
   toggleBasicInfo() {

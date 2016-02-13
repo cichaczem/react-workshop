@@ -3,33 +3,16 @@ import Menu from '../components/shared/Menu';
 import MenuButtonNames from '../lib/MenuButtonNames';
 import Student from '../components/participants/Student';
 import ParticipantsActionCreator from '../action_creators/ParticipantsActionCreator';
-import ParticipantsStore from '../stores/ParticipantsStore';
+import { connect } from 'react-redux';
 
 class Participants extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      students: []
-    }
-    this._onChange = this.onChange.bind(this);
-  }
-
   componentWillMount() {
-    ParticipantsStore.addChangeListener(this._onChange);
-
-    ParticipantsActionCreator.requestStudents();
-  }
-
-  componentWillUnmount() {
-    ParticipantsStore.removeChangeListener(this._onChange);
-  }
-
-  onChange() {
-    this.setState({ students: ParticipantsStore.getStudents() });
+    let action = ParticipantsActionCreator.requestStudents();
+    this.props.dispatch(action);
   }
 
   renderStudents() {
-    return this.state.students.map(
+    return this.props.students.map(
       (student) => <Student data={student} key={student.id} />
     );
   }
@@ -47,4 +30,10 @@ class Participants extends React.Component {
   }
 }
 
-export default Participants;
+function select(state) {
+  return {
+    students: state.participants.all
+  }
+}
+
+export default connect(select)(Participants);

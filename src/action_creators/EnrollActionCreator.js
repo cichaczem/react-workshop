@@ -9,9 +9,9 @@ const EnrollActionCreator = {
   },
 
   togglePreferences() {
-    AppDispatcher.dispatch({
-      actionType: ActionTypes.TOGGLE_PREFERENCES
-    })
+    return {
+      type: ActionTypes.TOGGLE_PREFERENCES
+    }
   }
 }
 

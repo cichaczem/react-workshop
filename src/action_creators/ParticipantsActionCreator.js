@@ -5,10 +5,10 @@ import API from '../lib/API';
 const PaticipantsActionCreator = {
   requestStudents() {
     const students = new API().getStudents();
-    AppDispatcher.dispatch({
-      actionType: ActionTypes.REQUEST_STUDENTS,
+    return {
+      type: ActionTypes.REQUEST_STUDENTS,
       students: students
-    })
+    };
   }
 }
 

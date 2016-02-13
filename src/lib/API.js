@@ -24,9 +24,15 @@ var students = [
 
 import Validator from './StudentValidator';
 
+const REQUEST_TIME = 2000;
+
 class API {
   getStudents() {
-    return students;
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(students);
+      }, REQUEST_TIME);
+    });
   }
 
   addStudent(name, surname, house, pet) {

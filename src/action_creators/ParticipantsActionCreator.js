@@ -3,9 +3,16 @@ import API from '../lib/API';
 
 const PaticipantsActionCreator = {
   requestStudents() {
-    const students = new API().getStudents();
+    return (dispatch) => {
+      new API().getStudents().then((students) => {
+        dispatch(this._receiveStudents(students));
+      });
+    };
+  },
+
+  _receiveStudents(students) {
     return {
-      type: ActionTypes.REQUEST_STUDENTS,
+      type: ActionTypes.RECEIVE_STUDENTS,
       students: students
     };
   }

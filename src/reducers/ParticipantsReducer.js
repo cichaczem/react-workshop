@@ -6,7 +6,7 @@ const initialState = {
 
 let ParticipantsReducer = (state = initialState, action) => {
   switch (action.type) {
-  case ActionTypes.REQUEST_STUDENTS:
+  case ActionTypes.RECEIVE_STUDENTS:
     return Object.assign({}, state, {
       all: action.students
     });

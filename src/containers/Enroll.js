@@ -3,29 +3,23 @@ import Menu from '../components/shared/Menu';
 import MenuButtonNames from '../lib/MenuButtonNames';
 import BasicInfo from '../components/enroll/BasicInfo';
 import Preferences from '../components/enroll/Preferences';
-import API from '../lib/API';
+import ParticipantsActionCreator from '../action_creators/ParticipantsActionCreator';
+import EnrollActionCreator from '../action_creators/EnrollActionCreator';
+import { connect } from 'react-redux';
 
 class Enroll extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      errors: null
-    }
-  }
-
   handleSubmit(e) {
     e.preventDefault();
-    const student = Object.assign({}, this.refs.basic.value(), this.refs.preferences.value())
-    const result = new API().addStudent(student.name, student.surname, student.house, student.pet)
-    if (result.errors) {
-      this.setErrors(result.errors);
-    } else {
-      this.redirectToList();
-    }
+    const action = ParticipantsActionCreator.addStudent(
+      this.props.form, this.redirectToList.bind(this));
+    this.props.dispatch(action);
   }
 
-  setErrors(errors) {
-    this.setState({errors: errors})
+  onInputChanged(type) {
+    return (e) => {
+      const action = EnrollActionCreator.onChanged(type, e.target.value);
+      this.props.dispatch(action);
+    }
   }
 
   redirectToList() {
@@ -33,14 +27,14 @@ class Enroll extends React.Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors } = this.props;
 
     return (
       <div>
         <Menu activeButton={MenuButtonNames.ENROLL} />
         <form>
-          <BasicInfo ref="basic" errors={errors} />
-          <Preferences ref="preferences" errors={errors} />
+          <BasicInfo errors={errors} onChanged={this.onInputChanged.bind(this)} />
+          <Preferences errors={errors} onChanged={this.onInputChanged.bind(this)} />
           <div className="action-holder">
             <input type="submit" value="Enroll" onClick={this.handleSubmit.bind(this)} />
           </div>
@@ -52,4 +46,11 @@ class Enroll extends React.Component {
 
 
 
-export default Enroll;
+function select(state) {
+  return {
+    errors: state.enroll.errors,
+    form: state.enroll.form,
+  }
+}
+
+export default connect(select)(Enroll);

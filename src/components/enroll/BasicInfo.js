@@ -4,13 +4,6 @@ import EnrollActionCreator from '../../action_creators/EnrollActionCreator';
 import { connect } from 'react-redux';
 
 class BasicInfo extends React.Component {
-  value() {
-    return {
-      name: this.refs.name.value,
-      surname: this.refs.surname.value
-    }
-  }
-
   toggleForm() {
     const action = EnrollActionCreator.toggleBasicInfo();
     this.props.dispatch(action);
@@ -36,10 +29,12 @@ class BasicInfo extends React.Component {
         <div className={this.formVisibilityCss()}>
           <label htmlFor="name">First Name</label>
           {this.renderErrorForField("name")}
-          <input type="text" name="name" placeholder="Arien" ref="name" />
+          <input type="text" name="name" placeholder="Arien"
+                 onChange={this.props.onChanged('name')} />
           <label htmlFor="surname">Surname</label>
           {this.renderErrorForField("surname")}
-          <input type="text" name="surname" placeholder="Doriath" ref="surname" />
+          <input type="text" name="surname" placeholder="Doriath"
+                 onChange={this.props.onChanged('surname')} />
         </div>
       </fieldset>
     )

@@ -4,13 +4,6 @@ import EnrollActionCreator from '../../action_creators/EnrollActionCreator';
 import { connect } from 'react-redux';
 
 class Preferences extends React.Component {
-  value() {
-    return {
-      house: this.refs.house.value,
-      pet: this.refs.pet.value
-    }
-  }
-
   toggleForm() {
     const action = EnrollActionCreator.togglePreferences();
     this.props.dispatch(action);
@@ -37,7 +30,7 @@ class Preferences extends React.Component {
           <label htmlFor="house">House</label>
           {this.renderErrorForField("house")}
           <div className="select-wrapper">
-            <select name="house" defaultValue="" ref="house">
+            <select name="house" defaultValue="" onChange={this.props.onChanged('house')}>
               <option value="" disabled>-- Our choices show what we truly are --</option>
               <option value="gryffindor">Gryffindor</option>
               <option value="slytherin">Slytherin</option>
@@ -48,7 +41,7 @@ class Preferences extends React.Component {
           <label htmlFor="pet">Pet Companion</label>
           {this.renderErrorForField("pet")}
           <div className="select-wrapper">
-            <select name="pet" defaultValue="" ref="pet">
+            <select name="pet" defaultValue="" onChange={this.props.onChanged('pet')}>
               <option value="" disabled>-- Choose Pet Wisely --</option>
               <option value="owl">Owl</option>
               <option value="cat">Cat</option>

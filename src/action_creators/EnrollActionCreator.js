@@ -11,6 +11,14 @@ const EnrollActionCreator = {
     return {
       type: ActionTypes.TOGGLE_PREFERENCES
     }
+  },
+
+  onChanged(type, value) {
+    return {
+      type: ActionTypes.INPUT_CHANGED,
+      inputType: type,
+      inputValue: value
+    }
   }
 }
 

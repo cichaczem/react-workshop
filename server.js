@@ -11,6 +11,8 @@ import { match, RoutingContext } from 'react-router';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Routes from './src/routes';
+import { Provider } from 'react-redux';
+import { configureStore } from './src/store';
 
 const port = 1337;
 const ip = '127.0.0.1';
@@ -30,9 +32,15 @@ app.use(WebpackHotMiddleware(compiler, {
   path: '/__webpack_hmr'
 }));
 
+let initialState = {}
+const store = configureStore(initialState);
+
 const indexHtml = (renderProps) => {
   const app = ReactDOMServer.renderToString(
-    <RoutingContext {...renderProps} />);
+    <Provider store={store}>
+      <RoutingContext {...renderProps} />
+    </Provider>
+  );
   return `
   <!DOCTYPE html>
   <html>
@@ -46,6 +54,9 @@ const indexHtml = (renderProps) => {
     </head>
     <body>
       <div id="app">${app}</div>
+      <script>
+        window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+      </script>
       <script src="/bundle.js" type="text/javascript"></script>
     </body>
   </html>

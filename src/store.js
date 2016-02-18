@@ -8,9 +8,11 @@ const reducers = combineReducers({
   participants: ParticipantsReducer
 })
 
-let store = createStore(
-  reducers,
-  applyMiddleware(thunk)
-);
+export function configureStore(initialState = {}) {
+  return createStore(
+    reducers,
+    initialState,
+    applyMiddleware(thunk)
+  );
+}
 
-export default store;

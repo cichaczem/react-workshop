@@ -7,12 +7,14 @@ import http from 'http';
 import config from './webpack/development.config.js';
 import defaultConfig from './webpack/default.config.js';
 
-import { match, RoutingContext } from 'react-router';
+import { ReduxRouter } from 'redux-router';
+import { reduxReactRouter, match } from 'redux-router/server';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Routes from './src/routes';
 import { Provider } from 'react-redux';
 import { configureStore } from './src/store';
+import createHistory from 'history/lib/createMemoryHistory';
 
 const port = 1337;
 const ip = '127.0.0.1';
@@ -32,13 +34,10 @@ app.use(WebpackHotMiddleware(compiler, {
   path: '/__webpack_hmr'
 }));
 
-let initialState = {}
-const store = configureStore(initialState);
-
-const indexHtml = (renderProps) => {
+const indexHtml = (renderProps, store, state) => {
   const app = ReactDOMServer.renderToString(
     <Provider store={store}>
-      <RoutingContext {...renderProps} />
+      <ReduxRouter />
     </Provider>
   );
   return `
@@ -55,7 +54,7 @@ const indexHtml = (renderProps) => {
     <body>
       <div id="app">${app}</div>
       <script>
-        window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+        window.__INITIAL_STATE__ = ${JSON.stringify(state)}
       </script>
       <script src="/bundle.js" type="text/javascript"></script>
     </body>
@@ -64,19 +63,44 @@ const indexHtml = (renderProps) => {
 }
 
 app.use((req, res) => {
-  match({ routes: Routes, location: req.url }, (error, redirectLocation, renderProps) => {
+  let initialState = {}
+  const store = configureStore(reduxReactRouter, createHistory, initialState);
+
+  store.dispatch(match(req.originalUrl,
+                       (error, redirectLocation, renderProps) => {
     if (error) {
       res.status(500).send(error.message);
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      const html = indexHtml(renderProps);
-      res.send(html);
+      render(res, store, renderProps)
     } else {
       res.status(404).send('Not found');
     }
-  })
+  }));
 });
+
+function render(res, store, renderProps) {
+  Promise.all(fetchAll(store, renderProps)).then(() => {
+    try {
+      const finalState = store.getState();
+      const html = indexHtml(renderProps, store, finalState);
+      res.send(html);
+    } catch(e) {
+      res.status(500).send("Something went wrong");
+    }
+  }).catch((response) => {
+    res.status(500).send("Something went wrong");
+  });
+}
+
+function fetchAll(store, renderProps) {
+  return renderProps.components.map((componentClass) => {
+    if (componentClass.fetchData) {
+      return componentClass.fetchData(store.dispatch, renderProps.params)
+    }
+  });
+}
 
 http.createServer(app).listen(port, ip, (err) => {
   if(err) {

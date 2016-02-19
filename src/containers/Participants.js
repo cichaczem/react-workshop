@@ -6,9 +6,13 @@ import ParticipantsActionCreator from '../action_creators/ParticipantsActionCrea
 import { connect } from 'react-redux';
 
 class Participants extends React.Component {
-  componentWillMount() {
+  static fetchData(dispatch, params) {
     let action = ParticipantsActionCreator.requestStudents();
-    this.props.dispatch(action);
+    return dispatch(action);
+  }
+
+  componentWillMount() {
+    Participants.fetchData(this.props.dispatch);
   }
 
   renderStudents() {

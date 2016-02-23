@@ -38,24 +38,31 @@ class API {
   addStudent(name, surname, house, pet) {
     const student = this.buildStudent(name, surname, house, pet);
     const validator = new Validator(student);
-    if(validator.isValid()) {
-      students = [...students, student];
-      return student;
-    } else {
-      return {errors: validator.errors()}
-    }
-
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(validator.isValid()) {
+          students = [...students, student];
+          resolve(students);
+        } else {
+          reject(validator.errors());
+        }
+      }, REQUEST_TIME);
+    });
   }
 
   editStudent(id, name, surname, house, pet) {
     const student = this.buildStudent(name, surname, house, pet, id);
     const validator = new Validator(student);
-    if(validator.isValid()) {
-      students = [...students.filter(student => student.id !== id), student];
-      return student;
-    } else {
-      return {errors: validator.errors()}
-    }
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(validator.isValid()) {
+          students = [...students.filter(student => student.id !== id), student];
+          resolve(students);
+        } else {
+          reject(validator.errors());
+        }
+      }, REQUEST_TIME);
+    });
   }
 
   buildStudent(name, surname, house, pet, id = this.nextId()) {

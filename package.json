@@ -16,7 +16,7 @@
     "react-redux": "^4.4.0",
     "react-router": "^1.0.0-rc2",
     "redux": "^3.3.1",
-    "redux-router": "^0.1.0",
+    "redux-router": "1.0.0-beta6",
     "redux-thunk": "^1.0.3",
     "url-loader": "^0.5.7"
   },

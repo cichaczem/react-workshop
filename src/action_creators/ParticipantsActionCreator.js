@@ -16,6 +16,6 @@ const PaticipantsActionCreator = {
       students: students
     };
   }
-}
+};
 
 export default PaticipantsActionCreator;

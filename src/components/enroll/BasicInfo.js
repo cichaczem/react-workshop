@@ -1,7 +1,5 @@
 import React from 'react';
 import Error from '../shared/Error';
-import EnrollActionCreator from '../../action_creators/EnrollActionCreator';
-import { connect } from 'react-redux';
 
 class BasicInfo extends React.Component {
   value() {
@@ -11,16 +9,11 @@ class BasicInfo extends React.Component {
     }
   }
 
-  toggleForm() {
-    const action = EnrollActionCreator.toggleBasicInfo();
-    this.props.dispatch(action);
-  }
-
   formVisibilityCss() {
-    const { open } = this.props;
+    const { isOpen } = this.props;
     const common = "fields";
     const visible = "active";
-    return open ? `${common} ${visible}` : common;
+    return isOpen ? `${common} ${visible}` : common;
   }
 
   renderErrorForField(field) {
@@ -32,7 +25,7 @@ class BasicInfo extends React.Component {
   render() {
     return (
       <fieldset>
-        <legend onClick={this.toggleForm.bind(this)}>Basic Info</legend>
+        <legend onClick={this.props.toggle}>Basic Info</legend>
         <div className={this.formVisibilityCss()}>
           <label htmlFor="name">First Name</label>
           {this.renderErrorForField("name")}
@@ -46,10 +39,4 @@ class BasicInfo extends React.Component {
   }
 }
 
-function select(state) {
-  return {
-    open: state.enroll.isBasicInfoOpen
-  }
-}
-
-export default connect(select)(BasicInfo);
+export default BasicInfo;

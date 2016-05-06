@@ -76,7 +76,7 @@ class API {
   }
 
   nextId() {
-    return students.sort((a, b) => b.id > a.id)[0].id + 1;
+    return students.sort((a, b) => b.id - a.id)[0].id + 1;
   }
 }
 
